@@ -19,6 +19,12 @@
 				height: 100%;
 			}
     </style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$('#run').click(function() {
+				$('div').html($('#code').text());
+			});
+		</script>
   </head>
   <body>
     <button id="run">Run</button>
