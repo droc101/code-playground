@@ -1,5 +1,11 @@
 <html>
   <head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$('#run').click(function() {
+				$('div').html($('#code').text());
+			});
+		</script>
     <title>Code Playground</title>
     <style>
       .result {
@@ -31,11 +37,6 @@
 		    </tr>
 	    </tbody>
     </table>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script>
-			$('#run').click(function() {
-				$('div').text($('#code').text());
-			});
-		</script>
+	  
   </body>
 </html>
