@@ -1,14 +1,11 @@
 <html>
-  <head>
-		
-		<script>
+<head><script>
 			function run() {
 				document.getElementById("result").contentWindow.document.body.innerHTML = document.getElementById("code").value;
 			}
 		</script>
-    <title>Code Playground</title>
-    <style>
-      iframe {
+	<title>Code Playground</title>
+	<style type="text/css">iframe {
         width: 100%;
         height: 100%;
         border: 1px solid #eee;
@@ -20,22 +17,30 @@
       textarea {
         width: 100%;
         height: 100%;
+        background: #3b4c69;
+        color: #ffffff;
+        border: 1px solid #ffffff;
       }
 			table {
 				height: 100%;
 			}
-    </style>
-		
-  </head>
-  <body>
-    <table style="width:100%;">
-    	<tbody>
-		    <tr>
-			    <td><textarea id="code" placeholder = "Code here" oninput="run();">Hello, World! <b>this is fun</b></textarea></td>
-			    <td><iframe id="result"></iframe></td>
-		    </tr>
-	    </tbody>
-    </table>
-	  
-  </body>
+      body {
+        background: #3b4c69;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        padding: 0px;
+        margin: 0px;
+      }
+	</style>
+</head>
+<body>
+<table style="width:100%;">
+	<tbody>
+		<tr>
+			<td><textarea id="code" oninput="run();" placeholder="Type Here! The preview will update for every change you make!"></textarea></td>
+			<td><iframe id="result" src="about:blank"></iframe></td>
+		</tr>
+	</tbody>
+</table>
+</body>
 </html>
