@@ -3,7 +3,7 @@
 		
 		<script>
 			function run() {
-				document.getElementById("result").innerHTML = document.getElementById("code").value;
+				document.getElementById("result").contentWindow.document.body.innerHTML = document.getElementById("code").value;
 			}
 		</script>
     <title>Code Playground</title>
@@ -33,7 +33,7 @@
     	<tbody>
 		    <tr>
 			    <td><textarea id="code" placeholder = "Code here">Hello, World! <b>this is fun</b></textarea></td>
-			    <td><div class="result"></div></td>
+			    <td><iframe id="result"></iframe></td>
 		    </tr>
 	    </tbody>
     </table>
