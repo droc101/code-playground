@@ -3,6 +3,14 @@
 			function run() {
 				document.getElementById("result").contentWindow.document.body.innerHTML = document.getElementById("code").value;
 			}
+  			function download() {
+              	var a = document.body.appendChild(
+       			document.createElement("a")
+    			);
+				a.download = document.getElementById('name').value;
+				a.href = "data:text/html," + document.getElementById("code").value;
+        		a.click();
+            }
 		</script>
 	<title>Code Playground</title>
 	<style type="text/css">iframe {
@@ -33,12 +41,31 @@
       }
 	</style>
 </head>
-<body>
+<body style="cursor: auto;">
 <table style="width:100%;">
 	<tbody>
-		<tr>
-			<td><textarea id="code" oninput="run();" placeholder="Type Here! The preview will update for every change you make!"></textarea></td>
-			<td><iframe id="result" src="about:blank"></iframe></td>
+		<tr style="height:10%;">
+			<td style="height:10%;">Code Playground 1.0</td>
+			<td style="height:10%;">&nbsp;</td>
+		</tr>
+		<tr style="height:90%;">
+			<td><textarea id="code" oninput="run();" placeholder="Type Here! The preview will update for every change you make!">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;style&gt;
+body {
+background: #ffffff;
+}
+&lt;/style&gt;
+&lt;script&gt;
+//JS Here
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Body Content Here
+&lt;/body&gt;
+&lt;/html&gt;</textarea></td>
+			<td><iframe frameborder="0" id="result" scrolling="no" src=""></iframe></td>
 		</tr>
 	</tbody>
 </table>
