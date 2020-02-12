@@ -1,71 +1,108 @@
 <html>
-<head><script>
-			function run() {
-				document.getElementById("result").contentWindow.document.body.innerHTML = document.getElementById("code").value;
-			}
-  			function download() {
-              	var a = document.body.appendChild(
-       			document.createElement("a")
-    			);
-				a.download = document.getElementById('name').value;
-				a.href = "data:text/html," + document.getElementById("code").value;
-        		a.click();
-            }
-		</script>
-	<title>Code Playground</title>
-	<style type="text/css">iframe {
-        width: 100%;
-        height: 100%;
-        border: 1px solid #eee;
+<head>
+	<title>Code Playground 2.0</title>
+	<script>
+
+      window.html = "Hello, World!";
+      window.js = "/*Css*/";
+      window.css = "//Javascript";
+      
+      window.code = "";
+
+      function updateCodeArea(mode) {
+        boxMode = mode;
+        var textBox = document.getElementById("code").value;
+        switch(mode) {
+ 		 case "h":
+  		  	textBox = window.html;
+    		break;
+ 		 case "j":
+    		textBox = window.js;
+    		break;
+          case "c":
+            textBox = window.css;
+		}
+      }
+      
+      function saveToVars(mode, box) {
+        mode -= 1;
+        var textBox = box;
+        switch(mode) {
+ 		 case 0:
+  		  	window.html = textBox;
+    		break;
+ 		 case 1:
+    		window.js = textBox;
+    		break;
+          case 2:
+            window.css = textBox;
+		}
+        runCode();
+      }
+      
+      function runCode() {
+        window.code = "<script>" + window.css + "<" + "/script>" + "<style>" + window.js + "</style>" + window.html;
+        // alert(window.code);
+        document.getElementById("result").contentDocument.body.innerHTML = window.code;
+      }
+      
+      function download(text, filename) {
+      		var fileContent = text;//set the content of the file
+	  		var bb = new Blob([fileContent ], { type: 'text/html' });//make it a blob
+			var a = document.createElement('a');//create a link to download it
+			a.download = "Code.html";//add the filename to the link
+			a.href = window.URL.createObjectURL(bb);//put the blob into it
+			a.click();//click the link
+        }
+      
+      
+  </script>
+	<style type="text/css">td.header {
+    height:20px;
+    }
+      textarea {
+        width:100%;
+          height:33%;
+        resize:none;
+        background: #33334411;
+        color: #fff;
       }
       td {
-        width: 50%;
-        height: 100%;
+       padding:0px; 
+        border: none;
+        background: #003;
+        color: #fff;
       }
-      textarea {
-        width: 100%;
-        height: 100%;
-        background: #3b4c69;
-        color: #ffffff;
-        border: 1px solid #ffffff;
+      table {
+       border: none; 
       }
-			table {
-				height: 100%;
-			}
+      
+      .frame {
+       background: #fff; 
+      }
+      
+      input {
+       border: 1px solid #667;
+        background: #334;
+        color: #fff;
+        border-radius: 5px;
+      }
+      
       body {
-        background: #3b4c69;
-        color: #ffffff;
-        border: 1px solid #ffffff;
-        padding: 0px;
-        margin: 0px;
+        background: #003;
       }
 	</style>
 </head>
 <body style="cursor: auto;">
-<table style="width:100%;">
+<table border="1" cellpadding="1" cellspacing="0" style="height:100%;width:100%;">
 	<tbody>
-		<tr style="height:10%;">
-			<td style="height:10%;">Code Playground 1.0</td>
-			<td style="height:10%;">&nbsp;</td>
+		<tr>
+			<td class="header" style="width: 524px;"><input onclick="runCode();download(window.code, '');" type="button" value="Download" /></td>
+			<td style="width: 604px;"><span style="font-family:arial,helvetica,sans-serif;">Output</span></td>
 		</tr>
-		<tr style="height:90%;">
-			<td><textarea id="code" oninput="run();" placeholder="Type Here! The preview will update for every change you make!">&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;&lt;/title&gt;
-&lt;style&gt;
-body {
-background: #ffffff;
-}
-&lt;/style&gt;
-&lt;script&gt;
-//JS Here
-&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-Body Content Here
-&lt;/body&gt;
-&lt;/html&gt;</textarea></td>
-			<td><iframe frameborder="0" id="result" scrolling="yes" src=""></iframe></td>
+		<tr>
+			<td style="width: 524px;"><textarea id="h" oninput="saveToVars(1, this.value);">Hello, World</textarea><textarea id="c" oninput="saveToVars(2, this.value);">/*Css*/</textarea><textarea id="j" oninput="saveToVars(3, this.value);">//Javascript</textarea></td>
+			<td class="frame" style="width: 604px;"><iframe frameborder="0" height="100%" id="result" scrolling="yes" src="about:blank" width="100%"></iframe></td>
 		</tr>
 	</tbody>
 </table>
