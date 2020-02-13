@@ -2,7 +2,6 @@
 <head>
 	<title>Code Playground 2.0</title>
 	<script>
-
       window.html = "Hello, World!";
       window.js = "/*Css*/";
       window.css = "//Javascript";
@@ -32,16 +31,16 @@
   		  	window.html = textBox;
     		break;
  		 case 1:
-    		window.js = textBox;
+    		window.css = textBox;
     		break;
           case 2:
-            window.css = textBox;
+            window.js = textBox;
 		}
         runCode();
       }
       
       function runCode() {
-        window.code = "<script>" + window.css + "<" + "/script>" + "<style>" + window.js + "</style>" + window.html;
+        window.code = "<script>" + window.js + "<" + "/script>" + "<style>" + window.css + "</style>" + window.html;
         // alert(window.code);
         document.getElementById("result").contentDocument.body.innerHTML = window.code;
       }
@@ -56,6 +55,20 @@
         }
       
       
+      function save() {
+        localStorage.setItem('html', window.html);
+        localStorage.setItem('js', window.js);
+        localStorage.setItem('css', window.css);
+      }
+      
+      function load() {
+        window.html = localStorage.getItem('html');
+        window.js = localStorage.getItem("js");
+        window.css = localStorage.getItem("css");
+        updateCodeArea("h", null);
+        updateCodeArea("j", null);
+        updateCodeArea("c", null);
+      }
   </script>
 	<style type="text/css">td.header {
     height:20px;
@@ -97,7 +110,7 @@
 <table border="1" cellpadding="1" cellspacing="0" style="height:100%;width:100%;">
 	<tbody>
 		<tr>
-			<td class="header" style="width: 524px;"><input onclick="runCode();download(window.code, '');" type="button" value="Download" /></td>
+			<td class="header" style="width: 524px;"><input onclick="runCode();download(window.code, '');" type="button" value="Download" /><input onclick="save();" type="button" value="Save Project" /><input onclick="load();" type="button" value="Load" /></td>
 			<td style="width: 604px;"><span style="font-family:arial,helvetica,sans-serif;">Output</span></td>
 		</tr>
 		<tr>
